@@ -1,0 +1,50 @@
+phase_1:
+	this phase has been defused relying the fact that
+	input string must be the same as the second argument
+	passed as pointer to the string to function <string_not_equal>
+	via register %esi, while pointer to input string passed via register %rdi 
+phase_2:
+	in function <phase_2> function call <read_six_numbers> puts onto the stack
+	six number from string we need to provide in order to defuse this phase.
+	By analyzing the loop after this function call we conclude that to avoid
+	bomb explosion string must be of the form "a b c a b c" while the next condition
+	must be satisfied: (a + b + c) != 0, where a, b, c - integer numbers
+phase_3:
+	in function <phase_3> onto the stack puts 2 numbers fetched from input string.
+	first of this numbers must be <= 7 and >= 1. By this number has determined the 
+	brunch of switch statement to which being passed control flow by so called jump table
+	(in other words first number determines the jump table entry in which we see the pointer 
+	to the next instruction to execute). The second number must be equal the number being
+	assign to register %eax in switch brunch being pointed by he first number.
+phase_4:
+	in <phase_4> input value pushed into the stack (requared input is a single number) must
+	be (> 0). Analysis of function <func4> has shown that input number (that I need to provide)
+	passed as an argument corresponds to a "order number" of a some number in a Fibonacci sequence.
+	In order to avoid bomb explosion <func4> must compute 9th Fibonacci number, that is 55. So, we
+	must provide number "9" as an input string for this phase.
+phase_5:
+	for defusing this phase we must provide two numbers as input string.
+	This phase based on somehow "self-referencial" reading the elements in the
+	array of permutation of integres between 0 and 15. That is, given some valid (in range 0-15)
+	starting index (first number we need to provide), array element at that position serves as
+	index in the next reading iteration and so on. Reverse engeneering assembly code for this phase
+	I found that in order to avoid bomb explotion we need read and compute comulative sum of
+	12 elements of the array in this "self-referencial" sequence, last from which must be 15.
+	And we must provide second number that equals to computed comulative sum described above.
+	Simple method to discover starting index is to examine contents of the whole array and traverse it
+	backwards from 15 value and stops in index that 13th in that reversed order.
+phase_6:
+	in this phase by our input number we must properly overwrite the data in <node0>
+	in the linked list being sorted by function <fun6>. After sorting by applying a sequence of
+	move instructions, we read the pointer to the 4th largest element in the list into a register %rax.
+	This element appears to be equals to 600. So, in order to avoid bomb explosion, we must overwrite
+	value in <node0> by value of 600.
+secret_phase:
+	after succesful calling <phase_6>, function <phase_defused> is called, in which
+	in case of total 6 input strings (each one corresponds one previous phase) and 4th
+	string equal "9 austinpowers" (not simply "9") <secret_phase> is invoked. To defuse
+	this secret phase we must enter one number, which would lead to return from <fun7>
+	value 3. This number discovered from second parameter passed to <fun7> by pointer
+	in register $rdi by dereferensing it several times and analyzing seing values.		 
+		
+	 	

